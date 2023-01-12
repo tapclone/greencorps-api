@@ -5,8 +5,6 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const app = express();
-app.use(express.json());
-app.use(cookieParser());
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,6 +28,8 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+app.use(express.json());
+app.use(cookieParser());
 app.use(session({ secret: "key", cookie: { maxAge: 6000000 } }));
 app.use("/api/admin", adminRoutes);
 const PORT = process.env.PORT || 8000;
