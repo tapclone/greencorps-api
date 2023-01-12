@@ -1,18 +1,22 @@
 const asyncHandler = require("express-async-handler");
 const db = require("../config/db");
 const collection = require("../config/collection");
-const generateToken = require("../utils/jwtToken");
 const { ObjectId } = require("mongodb");
 const { GALLERY_COLLECTION } = require("../config/collection");
 const {CLIENTS_COLLECTION} = require ('../config/collection')
-
+const jwt = require("jsonwebtoken");
+const generateToken = (id) => {
+  return jwt.sign({ id }, "asif", {
+    expiresIn: "30d",
+  });
+};
 const Login = asyncHandler(async (req, res) => {
 
   const { username, password } = req.body;
   if (username == "green_corps" && password == "1234567890") {
     const token = generateToken(password);
 
-    res.status(200).json(token);
+    res.status(200).json(token);   
   } else {
     res.status(401).json("Invalid Details");
   }
