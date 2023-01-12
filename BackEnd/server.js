@@ -4,7 +4,6 @@ const db = require("./config/db");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cors=require("cors")
-
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
