@@ -4,7 +4,6 @@ const {verifyToken}=require("../middelware/jwtToken")
 const { Login, AddBlog, DeleteBlog, viewAllBlog, AddGallery,viewAllGallery ,DeleteGallery,AddDoctors,ViewAllDoctors,DeleteDoctors, AddClients, DeleteClients, ViewAllClients} = require("../controls/adminControls");
 
 router.route("/login").post(Login);
-
 router.route("/addGallery").post(verifyToken,AddGallery)
 router.route("/viewAllGallery").get(viewAllGallery)
 router.route("/deleteGallery/:id").delete(verifyToken,DeleteGallery)
